@@ -1,0 +1,27 @@
+code, html, pre, pre code {
+  background-color: #ecf0f5;
+}
+html{
+  font-size: 13px;
+}
+
+html,body,.main-wrp,#main{
+  height: 100%;
+}
+.app-wrp{
+  min-height: 100%;
+}
+
+input{
+  padding: 0;
+}
+
+div,ul,form,dd,ol,h1,h2,h3,h4,h5,h6,dl,dt,p{margin:0px;padding:0px;}
+li{margin:0px;padding:0px;list-style-type: none;}
+a:link{text-decoration: none;}
+a:visited{text-decoration: none;}
+a:hover{color:#55ab2e;text-decoration: none;}
+img{border:0;}
+::-webkit-input-placeholder{color:#fff;font-size: 14px;}
+::-moz-placeholder{color:#fff;font-size: 14px;}
+:-moz-placeholder{color:#fff;font-size: 14px;}

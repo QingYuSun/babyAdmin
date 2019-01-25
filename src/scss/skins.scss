@@ -1,0 +1,57 @@
+
+.box-success{
+  border-top-color: #00a65a;
+}
+
+.box-default{
+
+}
+
+.text-yellow{
+  color: #f39c12;
+}
+.btn-primary,.button.is-primary{
+  background: #f8b62d !important;
+  color: white;
+}
+.button.is-cancel{
+  background: #cccccc;
+  color: white;
+}
+
+.button.is-primary:hover{
+  background: #f7ca6e !important;
+  color: white;
+}
+.btn-gray{
+  background: #B5B5B6;
+}
+.is-lunch{
+  background:#29ABE2;
+}
+link-orange{
+  color: #F8BF48 ;
+}
+
+a {
+  color: #F8BF48;
+  text-decoration: none;
+  -webkit-transition: none 86ms ease-out;
+  transition: none 86ms ease-out;
+}
+
+.input.is-active, .input:active, .input:focus, .textarea.is-active, .textarea:active, .textarea:focus {
+  border-color: #f8b62d;
+  outline: 0;
+}
+.el-button--primary{
+  background-color:#f8b62d !important;
+  border-color: #f8b62d !important
+}
+.el-button:hover{
+  color: #f8b62d !important;
+  border-color: #f8b62d !important;
+}
+.el-button--primary:hover{
+  color: #fff !important; 
+}

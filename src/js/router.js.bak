@@ -1,0 +1,176 @@
+/**
+ * Created by lifetea on 2016/10/8.
+ */
+
+let Vue             =   require('Vue')
+
+import VueRouter    from  'vue-router'
+
+import auth         from  './auth'
+
+//挂载vue-router
+Vue.use(VueRouter);
+
+//布局
+import Layout       from '../view/Layout.vue'
+//lazy load
+const lazyLoading = (name, index = false) => () => System.import(`../view/${name}${index ? '/index' : ''}.vue`)
+
+//要求登录
+function requireAuth (to, from, next) {
+    if (!auth.loggedIn()) {
+        next({
+            path: '/login',
+            query: { redirect: to.fullPath }
+        })
+    } else {
+        next()
+    }
+}
+
+const routes = [
+    { path: '', component: Layout,beforeEnter:requireAuth,
+        children: [
+            {
+                path: '',
+                component: lazyLoading('Index'),
+                name:"index",
+                auth: 'user'
+            },
+            {
+                path: 'index',
+                component: lazyLoading('Index'),
+                name:'index',
+                auth: 'user'
+            },
+            // {
+            //     path: 'cert',
+            //     component: lazyLoading('Cert/Cert'),
+            //     name:'cert',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'doctor-list',
+            //     component: lazyLoading('Doctor/Doctor'),
+            //     name:'doctor-list',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'doctor-top',
+            //     component: lazyLoading('Doctor/Top'),
+            //     name:'doctor-top',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'doctor-edit',
+            //     component: lazyLoading('Doctor/Edit'),
+            //     name:'doctor-edit',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'doctor-set',
+            //     component: lazyLoading('Doctor/Set'),
+            //     name:'doctor-set',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'doctor-add',
+            //     component: lazyLoading('Doctor/Add'),
+            //     name:'add',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'sick',
+            //     component: lazyLoading('Sick/Sick'),
+            //     name:'sick',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'order',
+            //     component: lazyLoading('Order/Order'),
+            //     name:'order',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'balance',
+            //     component: lazyLoading('Balance/Balance'),
+            //     name:'balance',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'jiesuan',
+            //     component: lazyLoading('Balance/jiesuan'),
+            //     name:'jiesuan',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'set',
+            //     component: lazyLoading('Set/Set'),
+            //     name:'set',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'set-refund',
+            //     component: lazyLoading('Set/Refund'),
+            //     name:'set-refund',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'set-balance',
+            //     component: lazyLoading('Set/Balance'),
+            //     name:'set-balance',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'set-spread',
+            //     component: lazyLoading('Set/Spread'),
+            //     name:'set-spread',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'set-royalty',
+            //     component: lazyLoading('Set/Royalty'),
+            //     name:'set-royalty',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'depart',
+            //     component: lazyLoading('Set/Depart'),
+            //     name:'depart',
+            //     auth: 'user'
+            // },
+            // {
+            //     path: 'set-hospital',
+            //     component: lazyLoading('Set/Hospital'),
+            //     name:'set-hospital',
+            //     auth: 'user'
+            // },
+        ]
+    },
+    {
+        path: '/login',
+        name:'login',
+        component: lazyLoading('Login')
+    },
+    {
+        path: '/logout',
+        name:'logout',
+        beforeEnter (to, from, next) {
+            auth.logout()
+            next('/login')
+        }
+    },
+    { path: '*', component: lazyLoading('Login') }
+];
+
+
+
+
+//定义路由
+var router = new VueRouter({
+    mode: 'hash',
+    routes // （缩写）相当于 routes: routes
+})
+
+
+export default router
